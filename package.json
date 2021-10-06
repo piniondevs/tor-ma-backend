@@ -1,0 +1,31 @@
+{
+  "name": "tor-ma-backend",
+  "version": "1.0.0",
+  "description": "The backend for Tor Ma bot.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piniondevs/tor-ma-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/piniondevs/tor-ma-backend/issues"
+  },
+  "homepage": "https://github.com/piniondevs/tor-ma-backend#readme",
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.13"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^20.2.0",
+    "mongoose": "^6.0.9",
+    "nanoid": "^3.1.29"
+  },
+  "type": "module"
+}
