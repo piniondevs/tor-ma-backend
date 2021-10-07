@@ -1,8 +1,10 @@
-'use strict';
-
 import Hapi from '@hapi/hapi';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+
+// Models
+import Galis from './models/GaliModel';
+import Requests from './models/RequestModel';
 
 dotenv.config();
 
