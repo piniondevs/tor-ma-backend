@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/piniondevs/tor-ma-backend#readme",
   "devDependencies": {
+    "axios": "^0.22.0",
     "dotenv": "^10.0.0",
     "nodemon": "^2.0.13"
   },
@@ -26,6 +27,5 @@
     "@hapi/hapi": "^20.2.0",
     "mongoose": "^6.0.9",
     "nanoid": "^3.1.29"
-  },
-  "type": "module"
+  }
 }

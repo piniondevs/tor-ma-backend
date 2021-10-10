@@ -1,6 +1,6 @@
-import { Schema } from "mongoose";
+const mongoose = require('mongoose');
 
-const requestModel = new Schema({
+const requestModel = new mongoose.Schema({
     id: {
         type: String,
         required: true
@@ -15,6 +15,6 @@ const requestModel = new Schema({
     }
 });
 
-const Requests = mongoose.model('gali', requestModel);
+const Request = mongoose.model('request', requestModel);
 
-export default Requests;
+module.exports = Request;

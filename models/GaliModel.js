@@ -1,6 +1,6 @@
-import { Schema } from "mongoose";
+const mongoose = require('mongoose');
 
-const galiModel = new Schema({
+const galiModel = new mongoose.Schema({
     id: {
         type: String,
         required: true
@@ -15,6 +15,6 @@ const galiModel = new Schema({
     }
 });
 
-const Galis = mongoose.model('gali', galiModel);
+const Gali = mongoose.model('gali', galiModel);
 
-export default Galis;
+module.exports = Gali;
