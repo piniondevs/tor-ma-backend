@@ -32,6 +32,8 @@ const init = async () => {
         }
     });
 
+    /* Routes Relating to Requests */
+
     // Get Requests Route
     server.route({
         path: '/requests',
@@ -45,6 +47,22 @@ const init = async () => {
             }
         }
     });
+
+    // Getting a single request route
+    server.route({
+        path: '/requests/{request_id}',
+        method: 'GET',
+        handler: async (request) => {
+            try {
+
+                const singleRequest = await Request.findOne({ id: request.params.request_id });
+                return singleRequest;
+
+            } catch (err) {
+                return err;
+            }
+        }
+    })
 
     // Creating a Request Route
     server.route({
@@ -74,6 +92,24 @@ const init = async () => {
         }
     });
 
+    // Deleting a request route 
+    server.route({
+        path: '/requests/delete/{request_id}',
+        method: 'DELETE',
+        handler: async (request) => {
+            try {
+
+                await Request.deleteOne({ id: request.params.request_id });
+                return `If everything went fine then the model has been deleted`;
+
+            } catch (err) {
+                return err;
+            }
+        }
+    });
+
+
+    /* Routes Relating to Galis */
 
     // Get Galis Route
     server.route({
@@ -81,13 +117,30 @@ const init = async () => {
         method: 'GET',
         handler: async () => {
             try {
-                const galis = await Galis.find();
+                const galis = await Gali.find();
                 return galis;
             } catch (err) {
                 return err;
             }
         }
     })
+
+    // Get Single Gali Route
+    server.route({
+        path: '/galis/{gali_id}',
+        method: 'GET',
+        handler: async (request) => {
+            try {
+
+                const singleGali = await Gali.findOne({ id: request.params.gali_id });
+                return singleGali;
+
+            } catch (err) {
+                return err;
+            }
+        }
+    })
+
 
     await server.start();
     console.log(`Server running at http://localhost:${PORT}`);
