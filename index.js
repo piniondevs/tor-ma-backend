@@ -69,7 +69,7 @@ const init = async () => {
                 return err;
             }
         }
-    })
+    });
 
     // Creating a Request Route
     server.route({
@@ -136,7 +136,7 @@ const init = async () => {
                 return err;
             }
         }
-    })
+    });
 
     // Get Single Gali Route
     server.route({
@@ -152,7 +152,7 @@ const init = async () => {
                 return err;
             }
         }
-    })
+    });
 
 
     await server.start();
