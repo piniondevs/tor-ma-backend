@@ -32,7 +32,14 @@ const init = async () => {
         }
     });
 
-    /* Routes Relating to Requests */
+    /* Routes Relating to Requests 
+     *
+     * /requests - Get all the requests (GET)
+     * /requests/{request_id} - Get a single request (GET)
+     * /requests/create - Create a new request (POST)
+     * /requests/delete/{request_id} - Delete a request (DELETE)
+     * 
+    */
 
     // Get Requests Route
     server.route({
@@ -109,7 +116,13 @@ const init = async () => {
     });
 
 
-    /* Routes Relating to Galis */
+    /* Routes Relating to Galis 
+     *
+     * /galis - Get all the galis (GET)
+     * /galis/{gali_id} - Get a single gali (GET)
+     * 
+     * 
+    */
 
     // Get Galis Route
     server.route({
