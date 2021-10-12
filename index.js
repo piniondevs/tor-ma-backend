@@ -107,7 +107,7 @@ const init = async () => {
             try {
 
                 await Request.deleteOne({ id: request.params.request_id });
-                return `If everything went fine then the model has been deleted`;
+                return `If everything went fine then the element has been deleted`;
 
             } catch (err) {
                 return err;
@@ -120,7 +120,7 @@ const init = async () => {
      *
      * /galis - Get all the galis (GET)
      * /galis/{gali_id} - Get a single gali (GET)
-     * 
+     * /galis/delete/{gali_id} - Delete a single gali (DELETE)
      * 
     */
 
@@ -147,6 +147,22 @@ const init = async () => {
 
                 const singleGali = await Gali.findOne({ id: request.params.gali_id });
                 return singleGali;
+
+            } catch (err) {
+                return err;
+            }
+        }
+    });
+
+    // Deleteing a gali
+    server.route({
+        path: '/galis/delete/{gali_id}',
+        method: 'DELETE',
+        handler: async (request) => {
+            try {
+
+                await Gali.deleteOne({ id: request.params.gali_id });
+                return `If everything went fine then the element has been deleted`;
 
             } catch (err) {
                 return err;
