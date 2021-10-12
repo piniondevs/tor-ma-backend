@@ -79,9 +79,7 @@ const init = async () => {
             try {
                 const { gali, author } = request.payload;
 
-                if (!gali) return 'You must include a \'gali\' property in the payload.'
-                if (!author) return 'You must include a \'author\' property in the payload.'
-
+                if (!gali || !author) return `You must include a '${!gali ? 'gali' : 'author'}' property in the payload.`;
 
                 const schema = {
                     id: nanoid(10),
@@ -113,6 +111,22 @@ const init = async () => {
                 return err;
             }
         }
+    });
+
+    // Accepting a request
+    server.route({
+        path: '/requests/accept',
+        method: 'POST',
+        handler: async (request) => {
+            try {
+                const { id } = request.playload;
+
+                if (!id) return '\'id\' property must be included in the payload.';
+                
+            } catch (err) {
+                return err;
+            }
+        } 
     });
 
 
