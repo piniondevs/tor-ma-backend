@@ -38,6 +38,7 @@ const init = async () => {
      * /requests/{request_id} - Get a single request (GET)
      * /requests/create - Create a new request (POST)
      * /requests/delete/{request_id} - Delete a request (DELETE)
+     * /requests/accept/{request_id} - Accept a request and move to gali db (POST) 
      * 
     */
 
@@ -119,11 +120,29 @@ const init = async () => {
         method: 'POST',
         handler: async (request) => {
             try {
-                const { id } = request.playload;
+                const { id } = request.payload;
 
-                if (!id) return '\'id\' property must be included in the payload.';
-                
+                if (!request.payload.id) return '\'id\' property must be included in the payload.';
+
+                const req = await Request.findOne({ id: id });
+
+                if (!req) return 'Well shit, we couldnt find that request in our database.';
+
+                const galiScaffold = {
+                    id: req.id,
+                    gali: req.gali,
+                    author: req.author
+                }; 
+
+                const createdGali = new Gali(galiScaffold);
+
+                await createdGali.save();
+
+                await Request.deleteOne({ id: id });
+
+                return 'Well looks like we were able to accept the request.';
             } catch (err) {
+                console.log(err);
                 return err;
             }
         } 
