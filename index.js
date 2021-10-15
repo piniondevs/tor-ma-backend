@@ -132,7 +132,7 @@ const init = async () => {
                     id: req.id,
                     gali: req.gali,
                     author: req.author
-                }; 
+                };
 
                 const createdGali = new Gali(galiScaffold);
 
@@ -145,7 +145,7 @@ const init = async () => {
                 console.log(err);
                 return err;
             }
-        } 
+        }
     });
 
 
@@ -153,6 +153,7 @@ const init = async () => {
      *
      * /galis - Get all the galis (GET)
      * /galis/{gali_id} - Get a single gali (GET)
+     * /galis/random - Get a random gali (GET)
      * /galis/delete/{gali_id} - Delete a single gali (DELETE)
      * 
     */
@@ -187,7 +188,21 @@ const init = async () => {
         }
     });
 
-    // Deleteing a gali
+    // Getting a random Gali
+    server.route({
+        path: '/galis/random',
+        method: 'GET',
+        handler: async () => {
+            try {
+                const allGalis = await Gali.find();
+                return allGalis[Math.floor(Math.random() * allGalis.length)];
+            } catch (err) {
+                return err;
+            }
+        }
+    });
+
+    // Deleteing a gali route
     server.route({
         path: '/galis/delete/{gali_id}',
         method: 'DELETE',
@@ -202,7 +217,6 @@ const init = async () => {
             }
         }
     });
-
 
     await server.start();
     console.log(`Server running at http://localhost:${PORT}`);
